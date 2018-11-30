@@ -3,18 +3,18 @@
 #include <sstream>
 #include <string.h>
 #include <stdio.h>
-
+#include "ladder.h"
 using namespace std;
-bool isInsideGrid(int x, int y)
-{
-    if (x <= numberofrows && y <= numberofcolumns && x > 0 && y > 0)
-        return true;
-
-    return false;
-}
-void calculate(){
-
-}
+//bool isInsideGrid(int x, int y)
+//{
+//    if (x <= numberofrows && y <= numberofcolumns && x > 0 && y > 0)
+//        return true;
+//
+//    return false;
+//}
+//void calculate(){
+//
+//}
 int main(){
     string dir1,dir2;
     dir1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/";
@@ -29,27 +29,49 @@ int main(){
     string line;
     getline(myfile,line);
     stringstream s(line);
-    //cout<<line;
-    const int numberofrows=5,numberofcolumns=5;
 
-   // memset(visited, 0, sizeof visited);
-//    numberofrows=s.get();
-//    numberofcolumns=s.get();
-   // s>>numberofrows>>numberofcolumns;
-    cout<<numberofrows<<numberofcolumns;
+int row,column;
+    s>>row>>column;
 
-    int arrai[numberofrows][numberofcolumns]={{2,2,2,2,2},{3,2,1,0,1},{4,2,0,2,4},{5,2,1,4,7},{6,2,2,6,10}};
+    int** matrix = new int*[row];
+    for(int i = 0; i < row; ++i)
+        matrix[i] = new int[column];
 
+    for(int i=0;i<row;i++){
+        getline(myfile,line);
+        stringstream s(line);
+        for(int j=0;j<column;j++){
+            s>>matrix[i][j];
+            }
+    }
+    getline(myfile,line);
+    int Q;
+    myfile>>Q;
+//    int * sourceX[Q],sourceY[Q],sinkX[Q],sinkY[Q];
+//
+//    for(int i=0;i<Q;i++){
+//        getline(myfile,line);
+//        stringstream s(line);
+//        s>>sourceX[i]>>
+//    }
+    cout<<"Q"<<Q<<endl;
 
+    bool ** visited=new bool*[row];
+    for(int i = 0; i < row; ++i)
+        visited[i]=new bool[column,false];
 
-    // construct a matrix to keep track of visited cells
-    int visited[numberofrows+1][numberofcolumns+1];
+    ladder l(matrix,row,column,Q,0,0,5,3,visited);
+    l.printMatrix();
+    for(int i = 0; i < row; ++i){
+        delete visited[i];
+        delete matrix[i];
+        cout<<"\ndeleted!";
+    }
 
     // initially all cells are unvisited
-    memset(visited, 0, sizeof visited);
+    //memset(visited, 0, sizeof visited);
 
-    int sourceX=3,sourceY=1,sinkX=1,sinkY=4;
-    cout<<arrai[sourceX][sourceY]<<" -  "<<arrai[sinkX][sinkY];
+    //int sourceX=3,sourceY=1,sinkX=1,sinkY=4;
 
 
 //    for(int i;i<numberofrows;i++){

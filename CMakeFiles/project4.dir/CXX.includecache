@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.cpp
+ladder.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
+
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
+iostream
+-
+fstream
+-
+sstream
+-
+bits/stdc++.h
+-
+
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/main.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+string.h
+-
+stdio.h
+-
+ladder.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
+
