@@ -16,6 +16,7 @@ using namespace std;
 //
 //}
 int main(){
+    ios_base::sync_with_stdio(false);
     string dir1,dir2;
     dir1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/";
     dir2="input.txt";
@@ -45,8 +46,16 @@ int row,column;
             }
     }
     getline(myfile,line);
-    int Q;
-    myfile>>Q;
+    int Q=stoi(line);
+    //myfile>>Q;
+
+    getline(myfile,line);
+   // cout<<line;
+    stringstream s2(line);
+    int fx,fy,tx,ty;
+
+    s2>>fx>>fy>>tx>>ty;
+    //cout<<fx<<fy<<tx<<ty;
 //    int * sourceX[Q],sourceY[Q],sinkX[Q],sinkY[Q];
 //
 //    for(int i=0;i<Q;i++){
@@ -60,13 +69,34 @@ int row,column;
     for(int i = 0; i < row; ++i)
         visited[i]=new bool[column,false];
 
-    ladder l(matrix,row,column,Q,0,0,5,3,visited);
-    l.printMatrix();
-    for(int i = 0; i < row; ++i){
-        delete visited[i];
-        delete matrix[i];
-        cout<<"\ndeleted!";
-    }
+    ladder l(matrix,row,column,Q,fx,fy,tx,ty,visited);
+    //l.printMatrix();
+    if(fx==tx && fy==ty)
+        cout<<"minimum ladder is found at zero!"<<endl;
+    l.spanCall();
+    cout<<endl<<l.laddersize;
+//    string o1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/",o2="test5.txt";
+//
+//    string o=o1+o2;
+//    ofstream out(o);
+//    int r=rand()%31,c=rand()%30;
+//    out<<r<<" "<<c<<endl;
+//    for(int i=0;i<r;i++){
+//        for(int j=0;j<c;j++){
+//    out<<(rand()%100)<<" ";
+//        }
+//        out<<endl;
+//    }
+//    out<<1<<endl;
+//
+//    out<<rand()%r<<" "<<rand()%c<<" "<<rand()%r<<" "<<rand()%c;
+//
+//    cout<<"minimum ladder : \n"<<l.laddersize;
+//    for(int i = 0; i < row; ++i){
+//        delete visited[i];
+//        delete matrix[i];
+//        //cout<<"\ndeleted!";
+//    }
 
     // initially all cells are unvisited
     //memset(visited, 0, sizeof visited);

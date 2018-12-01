@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include<bits/stdc++.h>
+#include <algorithm>
 using namespace std;
 class ladder {
 
@@ -17,15 +18,17 @@ public:
     int ** matrix;
     int row,column;
     bool ** visited;
-    int ** dynamic;  //left to right
+    //int ** dynamic;  //left to right
     int laddersize=INT_MAX;
     int Q;
+    //int laddersizesofar=INT_MAX;
     int fx,fy,tx,ty;
     void createDynamic();
-    void createMinimumSpanning(int,int);
+    void createMinimumSpanning(int,int,int,int,int);
     void printMatrix();
     bool borders(int ,int);
     bool isBetter(int);
+    void spanCall();
 };
 
 
