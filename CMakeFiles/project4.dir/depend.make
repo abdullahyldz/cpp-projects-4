@@ -4,6 +4,7 @@
 CMakeFiles/project4.dir/ladder.cpp.o: ladder.cpp
 CMakeFiles/project4.dir/ladder.cpp.o: ladder.h
 
+CMakeFiles/project4.dir/main.cpp.o: graph.h
 CMakeFiles/project4.dir/main.cpp.o: ladder.h
 CMakeFiles/project4.dir/main.cpp.o: main.cpp
 

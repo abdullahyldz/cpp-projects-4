@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "ladder.h"
+#include "graph.h"
 using namespace std;
 //bool isInsideGrid(int x, int y)
 //{
@@ -22,39 +23,41 @@ int main(){
     dir2="input.txt";
     ifstream myfile;
     myfile.open(dir1+dir2);
+    //grap
 
     if(!myfile.is_open()){
         cout<<"couldn't open it!!"<<endl;
         return -1;
     }
-    string line;
-    getline(myfile,line);
-    stringstream s(line);
+//    string line;
+//    getline(myfile,line);
+//    stringstream s(line);
 
 int row,column;
-    s>>row>>column;
+    myfile>>row>>column;
 
     int** matrix = new int*[row];
     for(int i = 0; i < row; ++i)
         matrix[i] = new int[column];
 
     for(int i=0;i<row;i++){
-        getline(myfile,line);
-        stringstream s(line);
+//        getline(myfile,line);
+//        stringstream s(line);
         for(int j=0;j<column;j++){
-            s>>matrix[i][j];
+            myfile>>matrix[i][j];
             }
     }
-    getline(myfile,line);
-    int Q=stoi(line);
-    //myfile>>Q;
+//    getline(myfile,line);
+//    int Q=stoi(line);
+    int Q;
+    myfile>>Q;
 
-    getline(myfile,line);
-   // cout<<line;
-    stringstream s2(line);
+//    getline(myfile,line);
+//    cout<<line;
+//    stringstream s2(line);
     int fx,fy,tx,ty;
 
-    s2>>fx>>fy>>tx>>ty;
+    myfile>>fx>>fy>>tx>>ty;
     //cout<<fx<<fy<<tx<<ty;
 //    int * sourceX[Q],sourceY[Q],sinkX[Q],sinkY[Q];
 //
@@ -66,11 +69,22 @@ int row,column;
     cout<<"Q"<<Q<<endl;
 
     bool ** visited=new bool*[row];
-    for(int i = 0; i < row; ++i)
-        visited[i]=new bool[column,false];
+    bool ** solutionR=new bool*[row];
+    bool ** solutionL=new bool*[row];
+    bool ** solutionU=new bool*[row];
+    bool ** solutionD=new bool*[row];
 
-    ladder l(matrix,row,column,Q,fx,fy,tx,ty,visited);
-    //l.printMatrix();
+    for(int i = 0; i < row; ++i){
+        visited[i]=new bool[column,false];
+        solutionL[i]=new bool[column,false];
+        solutionR[i]=new bool[column,false];
+        solutionU[i]=new bool[column,false];
+        solutionD[i]=new bool[column,false];
+    }
+
+
+    ladder l(matrix,row,column,Q,fx,fy,tx,ty,visited,solutionL,solutionR,solutionU,solutionD);
+    l.printMatrix();
     if(fx==tx && fy==ty)
         cout<<"minimum ladder is found at zero!"<<endl;
     l.spanCall();

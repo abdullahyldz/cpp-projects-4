@@ -14,17 +14,24 @@ class ladder {
 
 public:
     ~ladder();
-    ladder(int ** , int , int, int,int,int,int,int,bool** );
+    ladder(int ** , int , int, int,int,int,int,int,bool**,bool**,bool**,bool**,bool** );
     int ** matrix;
     int row,column;
     bool ** visited;
-    //int ** dynamic;  //left to right
+    int ** dynamicR;
+    int ** dynamicL;
+    int ** dynamicU;
+    int ** dynamicD;  //left to right
     int laddersize=INT_MAX;
-    int Q;
+    int Q,temp,temp1;
     //int laddersizesofar=INT_MAX;
     int fx,fy,tx,ty;
     void createDynamic();
-    void createMinimumSpanning(int,int,int,int,int);
+    bool createMinimumSpanning(int,int,int,int,int);
+    bool ** solutionR;
+    bool ** solutionL;
+    bool ** solutionU;
+    bool ** solutionD;
     void printMatrix();
     bool borders(int ,int);
     bool isBetter(int);
