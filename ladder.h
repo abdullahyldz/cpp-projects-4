@@ -9,33 +9,33 @@
 #include <sstream>
 #include<bits/stdc++.h>
 #include <algorithm>
+#include "limits.h"
 using namespace std;
+struct link{
+    int linkx;
+    int linky;
+    long long height;
+};
 class ladder {
 
 public:
+    link ** mylinks;
     ~ladder();
-    ladder(int ** , int , int, int,int,int,int,int,bool**,bool**,bool**,bool**,bool** );
-    int ** matrix;
+    ladder(int,int,string,string);
+    string inputtext,outputtext;
+    long long int ** matrix;
+
     int row,column;
-    bool ** visited;
-    int ** dynamicR;
-    int ** dynamicL;
-    int ** dynamicU;
-    int ** dynamicD;  //left to right
-    int laddersize=INT_MAX;
-    int Q,temp,temp1;
-    //int laddersizesofar=INT_MAX;
-    int fx,fy,tx,ty;
-    void createDynamic();
-    bool createMinimumSpanning(int,int,int,int,int);
-    bool ** solutionR;
-    bool ** solutionL;
-    bool ** solutionU;
-    bool ** solutionD;
+    //bool ** visited;
+    long long int final_ladder_height;
     void printMatrix();
-    bool borders(int ,int);
+    bool borders(int,int);
     bool isBetter(int);
+    vector <int> * Q_values;
+    int Q;
     void spanCall();
+    void makeTree();
+    void traverse(int,int,int,int);
 };
 
 

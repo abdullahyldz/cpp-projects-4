@@ -6,21 +6,15 @@
 #include "ladder.h"
 #include "graph.h"
 using namespace std;
-//bool isInsideGrid(int x, int y)
-//{
-//    if (x <= numberofrows && y <= numberofcolumns && x > 0 && y > 0)
-//        return true;
-//
-//    return false;
-//}
-//void calculate(){
-//
-//}
+
 int main(){
     ios_base::sync_with_stdio(false);
-    string dir1,dir2;
+    string dir1,dir2,dir3;
     dir1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/";
     dir2="input.txt";
+    dir3="output.txt";
+    string dir_in=dir1+dir2;
+    string dir_out=dir1+dir3;
     ifstream myfile;
     myfile.open(dir1+dir2);
     //grap
@@ -29,146 +23,15 @@ int main(){
         cout<<"couldn't open it!!"<<endl;
         return -1;
     }
-//    string line;
-//    getline(myfile,line);
-//    stringstream s(line);
+
 
 int row,column;
     myfile>>row>>column;
 
-    int** matrix = new int*[row];
-    for(int i = 0; i < row; ++i)
-        matrix[i] = new int[column];
 
-    for(int i=0;i<row;i++){
-//        getline(myfile,line);
-//        stringstream s(line);
-        for(int j=0;j<column;j++){
-            myfile>>matrix[i][j];
-            }
-    }
-//    getline(myfile,line);
-//    int Q=stoi(line);
-    int Q;
-    myfile>>Q;
+    ladder l(row,column,dir_in,dir_out);
 
-//    getline(myfile,line);
-//    cout<<line;
-//    stringstream s2(line);
-    int fx,fy,tx,ty;
-
-    myfile>>fx>>fy>>tx>>ty;
-    //cout<<fx<<fy<<tx<<ty;
-//    int * sourceX[Q],sourceY[Q],sinkX[Q],sinkY[Q];
-//
-//    for(int i=0;i<Q;i++){
-//        getline(myfile,line);
-//        stringstream s(line);
-//        s>>sourceX[i]>>
-//    }
-    cout<<"Q"<<Q<<endl;
-
-    bool ** visited=new bool*[row];
-    bool ** solutionR=new bool*[row];
-    bool ** solutionL=new bool*[row];
-    bool ** solutionU=new bool*[row];
-    bool ** solutionD=new bool*[row];
-
-    for(int i = 0; i < row; ++i){
-        visited[i]=new bool[column,false];
-        solutionL[i]=new bool[column,false];
-        solutionR[i]=new bool[column,false];
-        solutionU[i]=new bool[column,false];
-        solutionD[i]=new bool[column,false];
-    }
-
-
-    ladder l(matrix,row,column,Q,fx,fy,tx,ty,visited,solutionL,solutionR,solutionU,solutionD);
-    l.printMatrix();
-    if(fx==tx && fy==ty)
-        cout<<"minimum ladder is found at zero!"<<endl;
-    l.spanCall();
-    cout<<endl<<l.laddersize;
-//    string o1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/",o2="test5.txt";
-//
-//    string o=o1+o2;
-//    ofstream out(o);
-//    int r=rand()%31,c=rand()%30;
-//    out<<r<<" "<<c<<endl;
-//    for(int i=0;i<r;i++){
-//        for(int j=0;j<c;j++){
-//    out<<(rand()%100)<<" ";
-//        }
-//        out<<endl;
-//    }
-//    out<<1<<endl;
-//
-//    out<<rand()%r<<" "<<rand()%c<<" "<<rand()%r<<" "<<rand()%c;
-//
-//    cout<<"minimum ladder : \n"<<l.laddersize;
-//    for(int i = 0; i < row; ++i){
-//        delete visited[i];
-//        delete matrix[i];
-//        //cout<<"\ndeleted!";
-//    }
-
-    // initially all cells are unvisited
-    //memset(visited, 0, sizeof visited);
-
-    //int sourceX=3,sourceY=1,sinkX=1,sinkY=4;
-
-
-//    for(int i;i<numberofrows;i++){
-//
-//        for(int j=0;j<numberofcolumns;j++){
-//            getline(myfile,line);
-//            stringstream s(line);
-//            s>>arrai[i][j];
-//           // arrai[i][j]=abs(j+2*i-i*j+1);
-//            cout<<arrai[i][j]<<"\t";
-//        }
-//cout<<endl;
-//    }
-
-//    for(int i=1;i<numberofrows+1;i++){
-//
-//        getline(myfile,line);
-//        stringstream sq(line);
-//
-//        for(int j=1;j<numberofcolumns+1;j++){
-//            sq>>arrai[i][j];
-//            cout<<arrai[i][j]<<" ";
-//        }
-//
-//    }
-
-    //cout<<arrai[1][3];
-//    for(int i=1;i<numberofrows+1;i++){
-//
-//        for(int j=1;j<numberofcolumns+1;j++){
-//            cout<<arrai[i][j]<<" ";
-//        }
-//        cout<<endl;
-//    }
-//  getline(myfile,line);
-
-    //int Q=stoi(line);
-    //cout<<"Q"<<Q;
-
-
-//    for(int k=0;k<Q;k++){
-//        getline(myfile,line);
-//        s<<line;
-//        for(int l=0;l<3;l++)
-//            s>>sourceX>>sourceY>>sinkX>>sinkY;
-//    }
-
-   // cout<<sourceX<<sourceY<<sinkX<<sinkY;
-
-
-    myfile.close();
-
-
+   // l.printMatrix();
 
     return 0;
 }
