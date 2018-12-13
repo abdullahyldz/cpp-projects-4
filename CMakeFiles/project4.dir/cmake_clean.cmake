@@ -1,6 +1,7 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/project4.dir/main.cpp.o"
   "CMakeFiles/project4.dir/ladder.cpp.o"
+  "CMakeFiles/project4.dir/node.cpp.o"
   "project4.pdb"
   "project4"
 )

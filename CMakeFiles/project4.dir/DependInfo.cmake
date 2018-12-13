@@ -6,6 +6,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
 SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.cpp" "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/CMakeFiles/project4.dir/ladder.cpp.o"
   "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/main.cpp" "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/CMakeFiles/project4.dir/main.cpp.o"
+  "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.cpp" "/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/CMakeFiles/project4.dir/node.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

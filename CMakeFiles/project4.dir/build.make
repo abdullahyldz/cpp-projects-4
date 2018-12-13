@@ -95,16 +95,41 @@ CMakeFiles/project4.dir/ladder.cpp.o.provides: CMakeFiles/project4.dir/ladder.cp
 
 CMakeFiles/project4.dir/ladder.cpp.o.provides.build: CMakeFiles/project4.dir/ladder.cpp.o
 
+CMakeFiles/project4.dir/node.cpp.o: CMakeFiles/project4.dir/flags.make
+CMakeFiles/project4.dir/node.cpp.o: node.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/project4.dir/node.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/project4.dir/node.cpp.o -c /home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.cpp
+
+CMakeFiles/project4.dir/node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project4.dir/node.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.cpp > CMakeFiles/project4.dir/node.cpp.i
+
+CMakeFiles/project4.dir/node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project4.dir/node.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.cpp -o CMakeFiles/project4.dir/node.cpp.s
+
+CMakeFiles/project4.dir/node.cpp.o.requires:
+.PHONY : CMakeFiles/project4.dir/node.cpp.o.requires
+
+CMakeFiles/project4.dir/node.cpp.o.provides: CMakeFiles/project4.dir/node.cpp.o.requires
+	$(MAKE) -f CMakeFiles/project4.dir/build.make CMakeFiles/project4.dir/node.cpp.o.provides.build
+.PHONY : CMakeFiles/project4.dir/node.cpp.o.provides
+
+CMakeFiles/project4.dir/node.cpp.o.provides.build: CMakeFiles/project4.dir/node.cpp.o
+
 # Object files for target project4
 project4_OBJECTS = \
 "CMakeFiles/project4.dir/main.cpp.o" \
-"CMakeFiles/project4.dir/ladder.cpp.o"
+"CMakeFiles/project4.dir/ladder.cpp.o" \
+"CMakeFiles/project4.dir/node.cpp.o"
 
 # External object files for target project4
 project4_EXTERNAL_OBJECTS =
 
 project4: CMakeFiles/project4.dir/main.cpp.o
 project4: CMakeFiles/project4.dir/ladder.cpp.o
+project4: CMakeFiles/project4.dir/node.cpp.o
 project4: CMakeFiles/project4.dir/build.make
 project4: CMakeFiles/project4.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable project4"
@@ -116,6 +141,7 @@ CMakeFiles/project4.dir/build: project4
 
 CMakeFiles/project4.dir/requires: CMakeFiles/project4.dir/main.cpp.o.requires
 CMakeFiles/project4.dir/requires: CMakeFiles/project4.dir/ladder.cpp.o.requires
+CMakeFiles/project4.dir/requires: CMakeFiles/project4.dir/node.cpp.o.requires
 .PHONY : CMakeFiles/project4.dir/requires
 
 CMakeFiles/project4.dir/clean:

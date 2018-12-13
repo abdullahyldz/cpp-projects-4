@@ -6,9 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.cpp
-ladder.h
-/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/graph.h
+iostream
+-
+vector
+-
+list
+-
+fstream
+-
+sstream
+-
+stack
+-
+iterator
+-
 
 /home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
 iostream
@@ -20,5 +32,31 @@ sstream
 bits/stdc++.h
 -
 algorithm
+-
+limits.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/limits.h
+node.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.h
+
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/main.cpp
+iostream
+-
+fstream
+-
+sstream
+-
+string.h
+-
+stdio.h
+-
+ladder.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/ladder.h
+graph.h
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/graph.h
+
+/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/node.h
+iostream
+-
+list
 -
 

@@ -4,7 +4,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "ladder.h"
-#include "graph.h"
 using namespace std;
 
 int main(){
@@ -15,23 +14,33 @@ int main(){
     dir3="output.txt";
     string dir_in=dir1+dir2;
     string dir_out=dir1+dir3;
-    ifstream myfile;
-    myfile.open(dir1+dir2);
+    ifstream myfile2(dir1+dir2);
     //grap
 
-    if(!myfile.is_open()){
+    if(!myfile2.is_open()){
         cout<<"couldn't open it!!"<<endl;
         return -1;
     }
 
 
 int row,column;
-    myfile>>row>>column;
+    myfile2>>row>>column;
 
 
     ladder l(row,column,dir_in,dir_out);
+    l.prims();
+    //l.spanCall();
 
-   // l.printMatrix();
+    l.printMatrix();
+
+//    l.makeTree();
+//
+//    for(int i=0;i<l.row;i++){
+//        for(int j=0;j<l.column;j++){
+//            cout<<l.mylinks[i][j].linkx<<" "<<l.mylinks[i][j].linky<<" "<<l.mylinks[i][j].height<<"  ";
+//        }
+//       cout<<endl;
+//    }
 
     return 0;
 }
