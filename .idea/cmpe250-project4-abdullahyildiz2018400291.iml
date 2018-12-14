@@ -7,8 +7,6 @@
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/node.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ladder.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/pair.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/pair.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ladder.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

@@ -11,46 +11,42 @@
 #include <algorithm>
 #include "limits.h"
 #include "node.h"
+#include <list>
+
 using namespace std;
-//struct link{
-//    //link* pv;
-//    int linkx,linky;
-//    long long height;
+
+//struct compareLink : public std::binary_function<node*, node*, bool>
+//{
+//    bool operator()(const node * low, const node * high) const
+//    {
+//        if((high->dv -low->dv)<0){
+//            return true;
+//        }
+//        return false;
+//    }
 //};
-struct compareLink : public std::binary_function<node*, node*, bool>
-{
-    bool operator()(const node * low, const node * high) const
-    {
-        if((high->dv -low->dv)<0){
-            return true;
-        }
-        return false;
-    }
-};
 
 class ladder {
 
 public:
-    priority_queue< node*, std::vector<node*>,compareLink> treeQueue;
-    void dfs(node*);
-    void prims();
-    void createEdge();
+
     ~ladder();
     ladder(int,int,string,string);
     string inputtext,outputtext;
     vector<vector<node *>> matrix;
     int row,column;
-    bool ** visited;
+    //bool ** visited;
     long long int final_ladder_height;
     void printMatrix();
     bool borders(int,int);
-    int ** Q_values;
+    vector<node*> Q_source;
+    vector<node*> Q_target;
     int * solutions;
     int Q;
-    void spanCall();
-    void makeTree();
-    void traverse(int,int,int,int);
-
+    list<node*> findEdge(node*);
+    void dfs(node*,int);
+    void union_sets(node * v,node * u);
+    node* find_set(node *v);
     node * getRight(node *);
     node * getLeft(node *);
     node * getUp(node *);

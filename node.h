@@ -5,22 +5,23 @@
 #ifndef PROJECT4_NODE_H
 #define PROJECT4_NODE_H
 #include <iostream>
-#include "ladder.h"
-using namespace std;
+//#include "ladder.h"
 #include <list>
-#include "pair.h"
+#include <vector>
+using namespace std;
 class node {
 public:
     node * pv;
-    int dv;
+    int rank;
     int height;
     int x,y;
-    bool onQueue;
+    //bool onQueue;
     bool known;
-    list<pair*> edges;
+    vector<node*> edgespv;
+    vector<node*> query;
     node(int,int ,int);
     node();
-   // ~node();
+    ~node();
 };
 
 

@@ -6,16 +6,22 @@
 #include "ladder.h"
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]) {
+    // below reads the input file
+    //  in your next projects, you will implement that part as well
+    if (argc != 3) {
+        cout << "Run the code with the following command: ./project2 [input_file] [output_file]" << endl;
+        return 1;
+    }
     ios_base::sync_with_stdio(false);
     string dir1,dir2,dir3;
-    dir1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/";
-    dir2="input.txt";
-    dir3="output.txt";
-    string dir_in=dir1+dir2;
-    string dir_out=dir1+dir3;
-    ifstream myfile2(dir1+dir2);
-    //grap
+    //dir1="/home/student/workspace/cmpe250-project4-abdullahyildiz2018400291/";
+    dir2=argv[1];
+    dir3=argv[2];
+//    string dir_in=dir1+dir2;
+//    string dir_out=dir1+dir3;
+    ifstream myfile2(dir2);
+
 
     if(!myfile2.is_open()){
         cout<<"couldn't open it!!"<<endl;
@@ -25,22 +31,13 @@ int main(){
 
 int row,column;
     myfile2>>row>>column;
+    //cout<<row<<column;
 
+    ladder l(row,column,dir2,dir3);
+    //l.dfs(l.matrix[0][0],0);
 
-    ladder l(row,column,dir_in,dir_out);
-    l.prims();
-    //l.spanCall();
-
-    l.printMatrix();
-
-//    l.makeTree();
-//
-//    for(int i=0;i<l.row;i++){
-//        for(int j=0;j<l.column;j++){
-//            cout<<l.mylinks[i][j].linkx<<" "<<l.mylinks[i][j].linky<<" "<<l.mylinks[i][j].height<<"  ";
-//        }
-//       cout<<endl;
-//    }
+    ofstream ofs(dir3);
+    ofs<<(l.matrix[0][0]->height-l.matrix[row-1][column-1]->height);
 
     return 0;
 }

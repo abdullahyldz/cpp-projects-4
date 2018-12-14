@@ -19,13 +19,13 @@ ladder::ladder(int row, int column , string inp, string out) {
         return ;
     }
     myfile>>x>>y;
-    visited=new bool *[this->row];
+    // visited=new bool *[this->row];
 
-    matrix.assign(row,vector<node*>(column,nullptr));
+    matrix.assign(x,vector<node*>(y,nullptr));
     //printMatrix();
     int temp;
     for(int i=0;i<row;i++) {
-        visited[i]=new bool[this->column];
+        // visited[i]=new bool[this->column];
         for (int j = 0; j < column; j++) {
 
             myfile >> temp;
@@ -33,171 +33,131 @@ ladder::ladder(int row, int column , string inp, string out) {
 
         }
     }
+        for(int i=0;i<row;i++) {
+        for (int j = 0; j < column; j++) {
+            if(borders(i,j+1)){
+                matrix[i][j]->edgespv.push_back(matrix[i][j+1]);
+            }
+//sol
+            if(borders(i,j-1)) {
+                matrix[i][j]->edgespv.push_back(matrix[i][j-1]);
+            }
 
-    //printMatrix();
+//yukarı
+            if(borders(i-1,j)){
+                matrix[i][j]->edgespv.push_back(matrix[i-1][j]);
+            }
+
+            //aşağı
+            if(borders(i+1,j)){
+                matrix[i][j]->edgespv.push_back(matrix[i+1][j]);
+            }
+        }
+    }
+
     myfile>>this->Q;
-    Q_values=new int*[this->Q];
+    //Q_values=new int*[this->Q];
     solutions=new int[this->Q];
-    for(int i=0;i<this->Q;i++)
-        Q_values[i]=new int[4];
 
-    for(int i=0;i<this->Q;i++)
-        myfile>>Q_values[i][0]>>Q_values[i][1]>>Q_values[i][2]>>Q_values[i][3];
+//    for(int i=0;i<this->Q;i++)
+//        Q_values[i]=new int[4];
+    int fx,fy,tx,ty;
+    for(int i=0;i<this->Q;i++){
+        myfile>>fx>>fy>>tx>>ty;
+        matrix[fx][fy]->query.push_back(matrix[tx][ty]);
+//        Q_target.push_back(matrix[tx][ty]);
+    }
 
     this->final_ladder_height=LONG_LONG_MAX;
 }
 
-void ladder::createEdge() {
-    for(int i=0;i<this->row;i++){
-        for(int j=0;j<this->column;j++) {
-            matrix[i][j]->edges.push_back(new pair(matrix[i][j]->pv,matrix[i][j]->dv));
-            matrix[i][j]->pv->edges.push_back(new pair(matrix[i][j],matrix[i][j]->dv));
-        }
-    }
-    std::list<pair*>::iterator it;
-    for(it=matrix[0][0]->edges.begin();it!=matrix[0][0]->edges.end();){
-        if((*it)->pv==matrix[0][0]){
-            it=matrix[0][0]->edges.erase(it);
-            continue;
-        }
-        it++;
-    }
-}
-void ladder::printMatrix() {
-std::list<pair*>::iterator it;
-    for(int i=0;i<this->row;i++){
-        for(int j=0;j<this->column;j++){
-            cout<<matrix[i][j]->height<<"->("<<matrix[i][j]->edges.size()<<")";
-            for(it=matrix[i][j]->edges.begin();it!=matrix[i][j]->edges.end();++it){
-                cout<<","<<(*it)->pv->height<<"pair"<<(*it)->dv;
-            }
-            cout<<"\t";
-        }
-        cout<<endl;
-    }
-//    cout<<endl<<"Q values "<<Q<<endl;
-//    for(int i=0;i<this->Q;i++){
-//        cout<<Q_values[i][0]<<Q_values[i][1]<<Q_values[i][2]<<Q_values[i][3]<<endl;
+
+//void ladder::printMatrix() {
+//    std::list<node*>::iterator it;
+//    for(int i=0;i<this->row;i++){
+//        for(int j=0;j<this->column;j++){
+//            cout<<find_set(matrix[i][j])->height;
+//            //cout<<matrix[i][j]->edgespv.size();
+//
+//            cout<<"\t";
+//        }
+//        cout<<endl;
 //    }
-}
+//}
 bool ladder::borders(int r, int c) {
     if(r>=0 && r<(this->row) && c>=0 && c<(this->column))
         return true;
     return false;
 }
 
-void ladder::spanCall() {
-    for(int i=0;i<this->Q;i++){
-        traverse(Q_values[i][0],Q_values[i][1],Q_values[i][2],Q_values[i][3]);
-    }
-}
-//void ladder::traverse(int fx, int fy , int tx, int ty ) {
-//    std::list<node*>::iterator it=matrix[fx][fy]->edges.begin();
+//void ladder::union_sets(node *v, node *u) {
 //
-//    for(;it!=matrix[fx][fy]->edges.end();++it){
-//        if(!visited[(*it)->x][(*it)->y])
-//            dfs(*it);
+//    node * xRoot=find_set(v);
+//    node * yRoot=find_set(u);
+//
+//    yRoot->pv = xRoot;
+//
+//}
+//node * ladder::find_set(node * v) {
+//    if(v->pv!=v){
+//       return find_set(v->pv);
+//    }
+//    return matrix[v->x][v->y];
+//}
+//void ladder::dfs(node * v,int h)
+//{
+//
+//    v->known =true;
+//    v->pv = v;
+//    int temp;
+//for(node * u: v->edgespv){
+//        if(!u->known){
+//            temp=max(abs(v->height-u->height),h);
+//            dfs(u,temp);
+//            union_sets(v, u);
+//            find_set(v)->pv= v;
+//        }
+//}
+//for (node * other_node:v->query) {
+//        if (other_node->known){
+//            cout<<find_set(other_node)->pv->height;
+//            cout<<temp;
+//        }
 //    }
 //}
-//void ladder::dfs(node *n){
-//    visited[n->x][n->y]=true;
-//    std::list<node*>::iterator it=n->edges.begin();
+
+//void compute_LCAs() {
+//    // initialize n, adj and DSU
+//    // for (each query (u, v)) {
+//    //    queries[u].push_back(v);
+//    //    queries[v].push_back(u);
+//    // }
 //
-//    for(;it!=n->edges.end();++it){
-//        if(!visited[(*it)->x][(*it)->y])
-//            dfs(*it);
-//    }
-//};
-node* ladder::getRight(node * t) {
-    return matrix[t->x][t->y+1];
-}
-node* ladder::getLeft(node * t) {
-    return matrix[t->x][t->y-1];
-}
-node* ladder::getUp(node * t) {
-    return matrix[t->x-1][t->y];
-}node* ladder::getDown(node * t) {
-    return matrix[t->x+1][t->y];
-}
+//    dfs(matrix[0][0]);
+//}
 
-void ladder::prims() {
+//node* ladder::getRight(node * t) {
+//    return matrix[t->x][t->y+1];
+//}
+//node* ladder::getLeft(node * t) {
+//    return matrix[t->x][t->y-1];
+//}
+//node* ladder::getUp(node * t) {
+//    return matrix[t->x-1][t->y];
+//}node* ladder::getDown(node * t) {
+//    return matrix[t->x+1][t->y];
+//}
 
-    treeQueue.push(matrix[0][0]);
-    matrix[0][0]->onQueue=true;
-    matrix[0][0]->pv=matrix[0][0];
-    matrix[0][0]->dv=0;
-    node * right,* left,* up,* down;
-    int a=1;
-    node * top;
-    while(!treeQueue.empty()){
-        //cout<<a;
-        top =treeQueue.top();
-        top->known=true;
-        treeQueue.pop();
 
-//sağ
-        if(borders(top->x,top->y+1)){
-            //cout<<"right";
-            right=getRight(top);
-            if(!right->known && (abs(top->height-(right->height))<right->dv)){
-                right->dv=abs(top->height-right->height);
-                right->pv=top;
-            }
-            if(!right->onQueue){
-                right->onQueue=true;
-                treeQueue.push(right);
-            }
-        }
-//sol
-        if(borders(top->x,top->y-1)){
-            left=getLeft(top);
-            if(!left->known && (abs(top->height-(left->height))<left->dv)){
-                left->dv=abs(top->height-left->height);
-                left->pv=top;
-            }
-            if(!left->onQueue){
-                left->onQueue=true;
-                treeQueue.push(left);
-            }
-        }
-//yukarı
-        if(borders(top->x-1,top->y)){
-             up=getUp(top);
-            if(!up->known && (abs(top->height-(up->height))<up->dv)){
-                up->dv=abs(top->height-up->height);
-                up->pv=top;
-            }
-            if(!up->onQueue){
-                up->onQueue=true;
-                treeQueue.push(up);
-            }
-        }
-
-        //aşağı
-        if(borders(top->x+1,top->y)){
-            down=getDown(top);
-            if(!down->known && (abs(top->height-(down->height))<down->dv)){
-                down->dv=abs(top->height-down->height);
-                down->pv=top;
-            }
-            if(!down->onQueue){
-                down->onQueue=true;
-                treeQueue.push(down);
-            }
-        }
-        //a++;
-    } //while
-   // cout<<"prims "<<a<<endl;
-    createEdge();
-}
 ladder::~ladder() {
 
-    for(int i=0;i<this->row;i++){
-        for(int j=0;j<this->column;j++){
-            delete matrix[i][j];
-
-    }
-//    for(int i=0;i<this->Q;i++){
-//        delete Q_values[i];
-   }
+//    for(int i=0;i<this->row;i++){
+//        //delete visited[i];
+//        for(int j=0;j<this->column;j++){
+//            //delete matrix[i][j];
+//
+//        }
+////    for(int i=0;i<this->Q;i++){
+////        delete Q_values[i];
+//    }
 }

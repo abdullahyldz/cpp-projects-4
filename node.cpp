@@ -6,22 +6,29 @@
 #include "limits.h"
 node::node(int height,int x , int y) {
     this->height=height;
-    this->pv=nullptr;
-    this->dv=INT_MAX;
-    this->onQueue=false;
+    this->pv=this;
+    //this->rank=1;
+    //this->onQueue=false;
     this->x=x;
     this->y=y;
     this->known=false;
-    this->edges= {};
+    this->query= {};
+    this->edgespv= {};
+   // this->edgesdv= {};
 }
 node::node() {
     this->height=0;
     this->pv=nullptr;
-    this->dv=INT_MAX;
-    this->onQueue=false;
+    //this->rank=1;
+    //this->onQueue=false;
     this->x=0;
     this->y=0;
-    this->edges= {};
+    this->edgespv= {};
+    this->query= {};
+   // this->edgesdv= {};
     this->known=false;
 }
-
+node::~node() {
+    delete pv;
+    //delete edgespv;
+}
